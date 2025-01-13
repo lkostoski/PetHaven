@@ -9,7 +9,7 @@ app.set('views', path.join(__dirname, 'src', 'views'));
 app.use(express.static('public'));
 
 app.get('/', (req,res)=>{
-    res.render('slideshow.ejs');
+    res.render('Home.ejs');
 });
 
 app.get('/DogInfo', (req,res)=>{
@@ -46,6 +46,14 @@ app.get('/AdoptForm', (req,res)=>{
 
 app.get('/Shelters', (req,res)=>{
     res.render('Shelters.ejs');
+});
+
+app.get('/Item', (req,res)=>{
+    res.render('Item.ejs');
+});
+
+app.get('/Store', (req,res)=>{
+    res.render('Store.ejs');
 });
 
 app.listen(port, ()=>{
