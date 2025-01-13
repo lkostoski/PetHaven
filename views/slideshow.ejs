@@ -1,0 +1,424 @@
+<!-- DONE BY LJUPCHO KOSTOSKI CSY23044 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/myCSS.css"/>
+    <style>
+        .slideshow{
+            height:auto;
+            text-align: center;
+            padding-bottom: 30px;
+            padding-top: 7%;
+        }
+
+        .card-container{
+            display:block;
+            height:700px
+        }
+        .cards{
+            display:absolute;
+            background-color:#2F3C7E;
+            color:#FBEAEB;
+            position:absolute;
+            left: 0;
+            right: 0;
+            height: 60%;
+            width: 30%;
+            border-radius: 18%;
+            text-align: center;
+        }
+
+
+        #slideshow-title{
+            color: #2F3C7E;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            text-align: center;
+            padding:0px 0px 20px 0px;
+        }
+
+        .card-2{
+            margin-left: auto;
+            margin-right: auto;
+            z-index: 2;
+        }
+
+        .card-2:hover{
+            transform: scale(1.1);
+        }
+
+        .card-img{
+            width: 80%;
+            padding: 20px;
+            border-radius: 21%;
+            min-width:100px;
+        }
+        #card-header{
+            margin-top: 0px;
+            text-align: left;
+            padding-left: 40px;
+        }
+
+        #card-description{
+            margin-top: 0px;
+            text-align: center;
+            font-size: x-large;
+            padding: 40px;
+            text-wrap: auto;
+        }
+
+        .card-1{
+            margin-left: 20%;
+            margin-right: auto;
+            z-index: 1;
+            opacity: 50%;
+        }
+
+        .card-3{
+            margin-left: auto;
+            margin-right: 20%;
+            z-index: 1;
+            opacity: 50%;
+        }
+
+
+        #adopt{
+            position: relative;
+            background: #2F3C7E;
+            font-family: "Times New Roman", Times, serif;
+            border: none;
+            border-radius:0px 20px 0px 20px;
+            color: #FBEAEB;
+            width:30%;
+            font-size: 250%;
+            padding:20px;
+        }
+
+        #adopt:hover{
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        @media only Screen and (max-width:600px){
+
+            .card-container{
+                height:370px;
+            }
+
+            .cards{
+                height:40%;
+            }
+
+            #card-header{
+                font-size:150%;
+            }
+
+            #card-description{
+                font-size:large;
+                padding: 20px;
+            }
+
+            .card-2{
+                width: 50%;
+            }
+
+            .card-1{
+                margin-left: 10%;
+                margin-right: auto;
+                width: 50%;
+            }
+            
+            .card-3{
+                margin-left: auto;
+                margin-right: 10%;
+                width: 50%;
+            }
+
+            #adopt{
+                width:40%;
+                font-size: 200%;
+            }
+        }
+
+        .looking{
+            background-color: #FFFFFF;
+            height:auto;
+            width: 100%; 
+            text-align: center;
+            padding-top:50px;
+            padding-bottom:50px;
+        }
+
+        .split-section{
+            text-align: center;
+            padding: 30px;
+
+        }
+
+        .flex-container{
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            
+        }
+
+        .looking > h1{
+            display: flex;
+            font-size: 400%;
+            color: #1E1E1E;
+            opacity: 70%;
+            justify-content: center;
+        }
+
+        @media only Screen and (max-width:600px){
+            .flex-container{
+                flex-direction: column;
+            }
+
+            .looking > h1{
+                font-size: 300%;
+            }
+        }
+
+        #learn{
+            display: flex;
+            font-size: 24px;
+            padding: 20px;
+            background: none;
+            color:#2F3C7E;
+            font-family: "Times New Roman", Times, serif;
+            font-weight: bold;
+            border: solid #2F3C7E;
+            border-width: 4px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 40px;
+        }
+
+        #learn:hover{
+            background-color: #2F3C7E;
+            color: #FBEAEB;
+            cursor: pointer;
+        }
+
+        .information{
+            padding-bottom:7%;
+        }
+
+        .flex-container-1{
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding-left: 20%;
+            padding-right: 20%;
+        }
+
+        .split-section-1{
+            color: #2F3C7E;
+            text-align: center;
+            margin: auto;
+            padding: 20px 30px 20px 30px;
+            width: 100%;
+            font-size: large;
+        }
+
+        .split-section-1 > h1{
+            font-family: "Times New Roman", Times, serif;
+            font-weight: bold;
+            font-size: x-large;
+        }
+
+        .split-section-1 > img{
+            width:100%;
+            min-width: 180px;
+            border-radius: 20px;
+        }
+
+        @media only Screen and (max-width:600px){
+            .information{
+                padding-bottom:17%;
+            }
+
+            .flex-container-1{
+                flex-direction: row;
+                padding: 0;
+            }
+            
+            .split-section-1{
+                color: #2F3C7E;
+                text-align: center;
+                margin: auto;
+                padding: 30px;
+                font-size: 80%;
+            }
+            
+            .split-section-1 > h1{
+                font-family: "Times New Roman", Times, serif;
+                font-weight: bold;
+                font-size: 200%;
+                width:100%;
+            }
+        }
+
+        #top{
+            position:fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 200%;
+            bottom:11%;
+            right:1%;
+            background: #2F3C7E;
+            color:#FBEAEB;
+            font-family: "Times New Roman", Times, serif;
+            font-weight: bold;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="title">Pet Heaven</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="">Home</a>
+                </li>
+                <li class="popup">
+                    <a href="">Adoption</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">How to adopt?</a>
+                        </li>
+                        <li>
+                            <a href="">Find Pets</a>
+                        </li>
+                        <li>
+                            <a href="">Adoption Centers</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="popup">
+                    <a href="">Pet Shop</a>
+                </li>
+                <li class="popup">
+                    <a href="">Pet Info</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">Dogs</a>
+                        </li>
+                        <li>
+                            <a href="">Cats</a>
+                        </li>
+                        <li>
+                            <a href="">Others</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="popup">
+                    <a href="">Technical</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">About Us</a>
+                        </li>
+                        <li>
+                            <a href="">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="">Contact Us</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <h1>Account</h1>
+        <h1 id="navsmol">Nav</h1>
+    </header>
+    
+    <div class="slideshow">
+        <h1 id="slideshow-title">PETS UP FOR ADOPTION</h1>
+        <div class="card-container">
+            <div class="cards card-2">
+                <img src="/photos/doggo1.jpg" alt="Barney" class="card-img">
+                <content>
+                    <h1 id="card-header">Barney, 2</h1>
+                    <p id="card-description">Barney is very cute and you must adopt him!</p>
+                </content>
+            </div>
+            <div class="cards card-1">
+                <img src="/photos/mikeyfinal.png" alt="mikey" class="card-img">
+                <content>
+                    <h1 id="card-header">Mikey, 3</h1>
+                    <p id="card-description">Mikey is very cute and you must adopt him!</p>
+                </content>
+            </div>
+            <div class="cards card-3">
+                <img src="/photos/pumpking.jpeg" alt="Napkin" class="card-img">
+                <content>
+                    <h1 id="card-header">Napkin, 3</h1>
+                    <p id="card-description">Napkin is very cute and you must adopt him!</p>
+                </content>
+            </div>
+        </div> 
+        <a href="">
+            <button id="adopt">Adopt Me!</button>
+        </a>
+    </div>
+    <section class="looking">
+        <h1>LOOKING TO ADOPT A PET?</h1>
+        <div class="flex-container">
+            <div class="split-section">
+                <img src="/photos/paw.png" alt="paw">
+                <h2>FIND OUT WHICH PET SUITS YOU</h2>
+                <p>Want to adopt but aren’t sure what kind of pet fits best for you? Read about the different kinds of pets you could own.</p>
+                <button id="learn">LEARN MORE</button>
+            </div>
+            <div class="split-section">
+                <img src="/photos/FAQ.png" alt="FAQ">
+                <h2>CHECK OUT OUR FAQ</h2>
+                <p>Have questions? Check out our FAQ section for detailed answers and helpful information.</p>
+                <button id="learn">LEARN MORE</button>
+            </div>
+        </div>
+    </section>
+    <section class="information">
+        <div class="flex-container-1">
+            <div class="split-section-1">
+                <h1>BUY TOYS FOR YOUR PET!</h1>
+                <p>Already have a pet? Make your little friend happy by buying him a gift from out pet shop!</p>
+            </div>
+            <div class="split-section-1">
+                <img src="/photos/puppy-toy.png" alt="paw">
+            </div>
+        </div>
+        <div class="flex-container-1">
+            <div class="split-section-1">
+                <img src="/photos/dog-eat.png" alt="FAQ">
+            </div>
+            <div class="split-section-1">
+                <h1>BUY FOOD FOR YOUR PET!</h1>
+                <p>Take care of your little ones by choosing the best pet food tailored to their needs, ensuring they stay happy, healthy, and full of energy!</p>
+            </div>
+        </div>
+        <button id="learn">CHECK OUT OUR PET SHOP!</button>
+    </section>
+    <button id="top">&uarr;</button>
+    <footer>
+        <h1>Contact Us</h1>
+        <h1>About Us</h1>
+    </footer>
+    <script>
+        let toTop = document.getElementById("top");
+        toTop.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            console.log('clicked');
+        });
+    </script>
+</body>
+</html>
