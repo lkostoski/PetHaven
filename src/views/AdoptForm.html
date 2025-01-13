@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="myCSS.css"/>
+    <style>
+        #adoptionFormHeader {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form {
+            padding: 20px;
+            border-radius: 5px; 
+            border-radius: 5px;
+        }
+
+        .form h2 {
+            text-align: left;
+            margin-bottom: 5px;
+            position: relative;
+            margin-bottom: 30px;
+          }
+          
+          .form h2::after {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%); /* Centra el subrayado horizontalmente */
+            width: 100%; /* Ajusta el ancho del subrayado según sea necesario */
+            height: 2px;
+            background-color: #ccc;
+            bottom: -10px; /* Ajusta la posición vertical del subrayado */
+          }
+
+          .form p{
+            margin-bottom: 10px;
+          }
+
+          .form label{
+            display: inline-block;
+            margin-bottom: 15px;
+          }
+          
+          .form input[type="text"],
+          .form input[type="email"],
+          .form input[type="tel"],
+          .form input[type="number"],
+          .form input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+          }
+
+          .form textarea {
+            width: auto ;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+          } 
+
+        .form input[type="radio"],
+        .form input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+          }
+
+        .form input[name="facebookLink"],
+        .form input[name="instagramLink"] {
+        display: none; 
+        }
+          
+        .form input[name="haveFacebook"]:checked ~ input[name="facebookLink"],
+        .form input[name="haveInstagram"]:checked ~ input[name="instagramLink"] {
+        display: block; 
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="title">Pet Heaven</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="">Home</a>
+                </li>
+                <li class="popup">
+                    <a href="">Adoption</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">How to adopt?</a>
+                        </li>
+                        <li>
+                            <a href="">Find Pets</a>
+                        </li>
+                        <li>
+                            <a href="">Adoption Centers</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="popup">
+                    <a href="">Pet Shop</a>
+                </li>
+                <li class="popup">
+                    <a href="">Pet Info</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">Dogs</a>
+                        </li>
+                        <li>
+                            <a href="">Cats</a>
+                        </li>
+                        <li>
+                            <a href="">Others</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="popup">
+                    <a href="">Technical</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">About Us</a>
+                        </li>
+                        <li>
+                            <a href="">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="">Contact Us</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <h1>Account</h1>
+        <h1 id="navsmol">Nav</h1>
+    </header>
+    <h1 id="adoptionFormHeader">Adoption Form</h1>
+    <section>
+        <article>
+            <!--We need to, put more space bettwen divs, put the style becasue it looks awful, make the boxes bigger-->
+            <form>
+                <!--should we add a entrance to add the ID, in photo or in number-->
+                <div id="personalInfo" class="form">
+                    <h2>Personal Information</h2>
+                    <p><label>Name: <input name=name type="text" required></label></p>
+                    <p><label>Email: <input name=email type="email" required></label></p>
+                    <p><label>Phone: <input name=phone type="tel" required></label></p>
+                    <p><label>Street: <input name=street type="text" required></label></p>
+                    <p><label>City: <input name=city type="text" required></label></p>
+                    <p><label>Zip Code: <input name=zipCode type="number" required></label></p> <!--I need to change to see if its possible to take out the arrows becasue the zip codes are long-->
+                    <p><label>Birth Date: <input name=birthdate type="date" required></label></p>
+
+                    <!--No funciona el text thing aparece cuando presionas cualquiera de los dos-->
+                    <p>¿Tienes Facebook?</p>
+                    <input type="radio" id="yesFacebook" name="haveFacebook" value="Yes"><label for="yesFacebook">Sí</label>
+                    <input type="radio" id="noFacebook" name="haveFacebook" value="No"><label for="noFacebook">No</label>
+                    <input type="text" name="facebookLink">
+
+                    <p>¿Tienes Instagram?</p>
+                    <input type="radio" id="yesInstagram" name="haveInstagram" value="Yes"><label for="yesInstagram">Sí</label>
+                    <input type="radio" id="noInstagram" name="haveInstagram" value="No"><label for="noInstagram">No</label>
+                    <input type="text" name="instagramLink"> 
+                    
+                </div>
+
+                <div id="familyStatus" class="form">
+                    <h2>Family Status</h2>
+                    <p>How many people live in your house?</p>
+                    <input type="number" name="peopleNumber"></p>
+                    <p>Do you have children?</p>
+                    <p><input type="radio" id="yesChildren" name=haveChildren value="Yes"><label for="yesChildren">Yes</label>
+                    <input type="radio" id="noChildren" name=haveChildren value="No"><label for="noChildren">No</label></p>
+                    <p>Age of the children</p>
+                    <p><input type="number" name="ageChild"><b>   +</b></p>
+                </div>
+
+                <div id="homeInfo" class="form">
+                    <h2>Home Information</h2>
+                    <p>What type of home do you live in?</p>
+                    <p><input type="radio" id="homeStatus" name=homeStatus value=flat><label for="homeStatus">Flat</label>
+                    <input type="radio" id="homeStatus" name=homeStatus value=house><label for="homeStatus">House</label>
+                    <input type="radio" id="homeStatus" name=homeStatus value=chalet><label for="homeStatus">Chalet</label>
+                    <input type="radio" id="homeStatus" name=homeStatus value=mansion><label for="homeStatus">Mansion</label>
+                    <input type="radio" id="homeStatus" name=homeStatus value=cotage><label for="homeStatus">Cotage</label></p>
+            
+                    <p>Do you have a garden?</p>
+                    <p><input type="radio" id="yesGarden" name=haveGarden value="Yes"><label for="yesGarden">Yes</label>
+                    <input type="radio" id="noGarden" name=haveGarden value="No"><label for="noGarden">No</label></p>
+
+                    <p>Can the pet scape?</p>
+                    <p><input type="radio" id="yesCanScape" name=canScape value="Yes"><label for="yesCanScape">Yes</label>
+                    <input type="radio" id="noCanScape" name=canScape value="No"><label for="noCanScape">No</label></p>
+                </div>
+
+                <div id="petOwner" class="form">
+                    <h2>Owner Pet</h2>
+                    <p>Do you have more pets?</p>
+                    <p><input type="radio" id="yesPet" name=havePet value="Yes"><label for="yesPet">Yes</label>
+                    <input type="radio" id="noPet" name=havePet value="No"><label for="noPet">No</label></p>
+                    <p>How many pets do you have?</p>
+                    <input type="number" name="petNumber"></p> <!--If the user has 1 in the what kind of pet do you have it will appear the what kind of pet do you have and if the number is more than 1, the type will change from radio to checkbox.-->
+                    <p>What kind of pet do you have?</p> <!-- this will only appear whenever the user has pets -->
+                    <p><input type="radio" id="petType" name=petType value="Dog"><label for="petType">Dog</label> <!-- The type needs to change whenever the user has more than one pet -->
+                    <input type="radio" id="petType" name=petType value="Cat"><label for="petType">Cat</label>
+                    <input type="radio" id="petType" name=petType value="Other"><label for="petType">Other</label></p>
+                    
+
+                    <p>Have you ever had pets before?</p>
+                    <p><input type="radio" id="hadPets" name=hadPets value="Yes"><label for="hadPets">Yes</label>
+                    <input type="radio" id="hadPets" name=hadPets value="No"><label for="hadPets">No</label></p>
+
+                    <p>What kind of pet did you have?</p> <!-- this will only appear whenever the user has pets -->
+                    <p><input type="radio" id="petType2" name=petType2 value="Dog"><label for="petType">Dog</label><!-- The type needs to change whenever the user has more than one pet -->
+                    <input type="radio" id="petType2" name=petType2 value="Cat"><label for="petType">Cat</label>
+                    <input type="radio" id="petType2" name=petType2 value="Other"><label for="petType">Other</label></p>
+                </div>
+
+                <div id="prospectivePet" class="form">
+                    <h2>About the prospective pet</h2>
+                    <p><textarea name="whyAdopt">Why do you want to adopt this pet?</textarea></p>
+                    <p><textarea name="carePet">How would you take care of the pet?</textarea></p>
+
+                    <p>Does your family consent the adoption?</p>
+                    <p><input type="radio" id="consent" name=consent value="Yes"><label for="consent">Yes</label>                    
+                    <input type="radio" id="consent" name=consent value="No"><label for="consent">No</label></p>
+                    
+                    <p>Would you like to neuter the pet?</p>
+                    <p><input type="radio" id="neuterthePet" name=neuterthePet value="Yes"><label for="neuterthePet">Yes</label>                   
+                    <input type="radio" id="neuterthePet" name=neuterthePet value="No"><label for="neuterthePet">No</label></p>
+                    <p><textarea name="why">Why</textarea></p>
+
+                    <p>What type of home do you live in?</p>
+                    <input type="checkbox" id="homeAllowance" name=homeAllowance value="living Room"><label for="homeAllowance">Living room</label>
+                    <input type="checkbox" id="homeAllowance" name=homeAllowance value=kitchen><label for="homeAllowance">kithcen</label>
+                    <input type="checkbox" id="homeAllowance" name=homeAllowance value=beedroom><label for="homeAllowance">Bedroom</label>
+                    <input type="checkbox" id="homeAllowance" name=homeAllowance value=terrace><label for="homeAllowance">Terrace</label>
+                    <input type="checkbox" id="homeAllowance" name=homeAllowance value=bathroom><label for="homeAllowance">Bathroom</label></p>
+                </div>
+
+                <input type="submit" value="Submit">
+            </form>
+
+        </article>
+    <footer>
+        <h1>Contact Us</h1>
+        <h1>About Us</h1>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="myCSS.css"/>
+    <style>
+                    header, footer{
+                grid-column: 1/ span 6;
+            }
+            @media only screen and (max-width: 600px){
+            nav, section, aside{
+                grid-column: 1/ span 6;
+            }
+            }
+            @media only screen and (min-width: 600px){
+            nav{
+                grid-column: 1/ span 1;
+            }
+            aside{
+                grid-column: 2/ span 4;
+            }
+            aside{
+                grid-column:  5/ span 1;
+            }
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="title">Pet Heaven</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="">Home</a>
+                </li>
+                <li class="popup">
+                    <a href="">Adoption</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">How to adopt?</a>
+                        </li>
+                        <li>
+                            <a href="">Find Pets</a>
+                        </li>
+                        <li>
+                            <a href="">Adoption Centers</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="popup">
+                    <a href="">Pet Shop</a>
+                </li>
+                <li class="popup">
+                    <a href="">Pet Info</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">Dogs</a>
+                        </li>
+                        <li>
+                            <a href="">Cats</a>
+                        </li>
+                        <li>
+                            <a href="">Others</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="popup">
+                    <a href="">Technical</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">About Us</a>
+                        </li>
+                        <li>
+                            <a href="">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="">Contact Us</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <h1>Account</h1>
+        <h1 id="navsmol">Nav</h1>
+    </header>
+    <section>
+        <article id="dogsInfo">
+            <h1>Nymeria <span class="material-symbols-outlined">female</span></h1>
+            <ul>
+                <li>Birth: 5/02/2015</li>
+                <li>Breed: Belgian sheperd</li>
+                <li>Size: big</li>
+                <li>Character: Scary and shy</li>
+            </ul>
+
+        </article>
+        <article id="dogHistory">
+            <p>
+                Nymeria is a Belgian Shepherd who found her way to Paw Heaven after <br>
+                being abandoned on a quiet street. Despite her challenging past, she is a bright and <br>
+                energetic dog with a natural instinct to protect and care for those around her. <br>
+                Nymeria quickly bonded with the shelter staff, showing her intelligence and affection. <br>
+                She loves interactive play and thrives in environments where she can engage both mentally and physically. <br>
+                After receiving the love and care she needed, Nymeria is now ready to find her forever home, where she can continue <br>
+                to shine as a loyal, loving companion.
+            </p>
+        </article>
+        <article>
+            <table>
+                <tr>
+                    <td><a href=""><img src="../../photos/belganSheperd1.png" alt=""></a></td>
+                    <td><a href=""><img src="../../photos/belganSheperd2.png" alt=""></a></td>
+                    <td><a href=""><img src="../../photos/belganSheperd3.png" alt=""></a></td>
+                </tr>
+                <tr>
+                    <td><a href=""><img src="../../photos/belganSheperd1.png" alt=""></a></td>
+                    <td><a href=""><img src="../../photos/belganSheperd2.png" alt=""></a></td>
+                    <td><a href=""><img src="../../photos/belganSheperd3.png" alt=""></a></td>
+                </tr>
+                <tr>
+                    <td><a href=""><img src="../../photos/belganSheperd1.png" alt=""></a></td>
+                    <td><a href=""><img src="../../photos/belganSheperd2.png" alt=""></a></td>
+                    <td><a href=""><img src="../../photos/belganSheperd3.png" alt=""></a></td>
+                </tr>
+            </table>
+        </article>
+    </section>
+    <aside>
+        <img src="../../photos/belganSheperdMain.png" alt="">
+        <button><a href="">Adopt</a></button>
+    </aside>
+    <footer>
+        <h1>Contact Us</h1>
+        <h1>About Us</h1>
+    </footer>
+</body>
+</html>
