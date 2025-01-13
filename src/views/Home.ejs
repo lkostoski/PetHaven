@@ -6,48 +6,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./myCSS.css"/>
+    <link rel="stylesheet" href="myCSS.css"/>
     <style>
-        .slideshow{
-            height:auto;
-            text-align: center;
-            padding-bottom: 30px;
-            margin-top: 7%;
-        }
-
-        .card-container{
-            display:block;
-        }
-        .cards{
-            display:absolute;
-            background-color:#2F3C7E;
-            color:#FBEAEB;
-            position:absolute;
-            left: 0;
-            right: 0;
-            height: 60%;
-            width: 30%;
-            border-radius: 18%;
-            text-align: center;
-        }
-
 
         #slideshow-title{
+            position:relative;
             color: #2F3C7E;
             font-family: 'Times New Roman', Times, serif;
             font-weight: bold;
             text-align: center;
-            padding:0px 0px 20px 0px;
+            margin-top: 150px;
+            padding-bottom:30px;
+        }
+
+        .slideshow{
+            height:auto;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-container{
+            display:flex;
+        }
+        
+        .cards{
+            background-color:#2F3C7E;
+            color:#FBEAEB;
+            flex: 1;
+            border-radius: 18%;
+            transition: ease-in-out opacity 0.5s;
+        }
+
+        #prev{
+            position: absolute;
+            left:10%;
+            z-index: 3;
+            font-size: 200%;
+            background: #2F3C7E;
+            color:#FBEAEB;
+            font-family: "Times New Roman", Times, serif;
+            font-weight: bold;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border:none;
+            transform: rotate(-90deg);
+        }
+
+        #prev:hover{
+            cursor: pointer;
+            background-color: #FBEAEB;
+            color: #2F3C7E;
+            border: solid #2F3C7E;
+        }
+
+        .card-1{
+            z-index: 1;
+            opacity: 50%;
+            transform: translateX(50%);
         }
 
         .card-2{
+            position: relative;
             margin-left: auto;
             margin-right: auto;
             z-index: 2;
+            transform: translateX(0);
         }
 
         .card-2:hover{
             transform: scale(1.1);
+        }
+
+        .card-3{
+            position:relative;
+            transform: translateX(-50%);
+            z-index: 1;
+            opacity: 50%;
+        }
+
+        #next{
+            position: absolute;
+            right:10%;
+            z-index: 3;
+            font-size: 200%;
+            background: #2F3C7E;
+            color:#FBEAEB;
+            font-family: "Times New Roman", Times, serif;
+            font-weight: bold;
+            width: 64px;
+            height: 64px;
+            border: none;
+            border-radius: 50%;
+            transform: rotate(90deg);
+        }
+
+        #next:hover{
+            cursor: pointer;
+            background-color: #FBEAEB;
+            color: #2F3C7E;
+            border: solid #2F3C7E;
         }
 
         .card-img{
@@ -56,44 +116,34 @@
             border-radius: 21%;
             min-width:100px;
         }
+
         #card-header{
             margin-top: 0px;
             text-align: left;
-            padding-left: 40px;
+            padding-left: 10%;
         }
 
         #card-description{
             margin-top: 0px;
             text-align: center;
             font-size: x-large;
-            padding: 40px;
+            padding: 10%;
             text-wrap: auto;
         }
-
-        .card-1{
-            margin-left: 20%;
-            margin-right: auto;
-            z-index: 1;
-            opacity: 50%;
+        
+        #adopt-button{
+            text-align: center;
         }
-
-        .card-3{
-            margin-left: auto;
-            margin-right: 20%;
-            z-index: 1;
-            opacity: 50%;
-        }
-
 
         #adopt{
             position: relative;
-            margin-top: 40%;
+            margin-top: 5%;
             background: #2F3C7E;
             font-family: "Times New Roman", Times, serif;
             border: none;
             border-radius:0px 20px 0px 20px;
             color: #FBEAEB;
-            width:30%;
+            width:25%;
             font-size: 250%;
             padding:20px;
         }
@@ -104,43 +154,33 @@
         }
 
         @media only Screen and (max-width:600px){
-
-            .card-container{
-                height:370px;
-            }
-
-            .cards{
-                height:40%;
+            .card-img{
+                padding-left:10%;
             }
 
             #card-header{
+                padding-left: 0%;
                 font-size:150%;
+                text-align: center;
+                
             }
 
             #card-description{
-                font-size:large;
-                padding: 20px;
-            }
-
-            .card-2{
-                width: 50%;
-            }
-
-            .card-1{
-                margin-left: 10%;
-                margin-right: auto;
-                width: 50%;
-            }
-            
-            .card-3{
-                margin-left: auto;
-                margin-right: 10%;
-                width: 50%;
+                font-size:medium;
+                padding: 5%;
             }
 
             #adopt{
                 width:40%;
                 font-size: 200%;
+            }
+
+            #next{
+                right:3%;
+            }
+
+            #prev{
+                left:3%;
             }
         }
 
@@ -154,17 +194,18 @@
             padding-bottom:50px;
         }
 
-        .split-section{
-            text-align: center;
-            padding: 30px;
-
-        }
-
         .flex-container{
             display:flex;
             flex-direction: row;
             justify-content: space-between;
             
+        }
+
+        .split-section{
+            text-align: center;
+            padding: 30px;
+            flex: 1;
+
         }
 
         .looking > h1{
@@ -267,19 +308,23 @@
 
         #top{
             position:fixed;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             font-size: 200%;
             bottom:11%;
             right:1%;
             background: #2F3C7E;
             color:#FBEAEB;
             font-family: "Times New Roman", Times, serif;
-            font-weight: bold;
             width: 64px;
             height: 64px;
             border-radius: 50%;
+            border: none;
+        }
+
+        #top:hover{
+            cursor: pointer;
+            background-color: #FBEAEB;
+            color: #2F3C7E;
+            border: solid #2F3C7E;
         }
     </style>
 </head>
@@ -341,22 +386,23 @@
         <h1>Account</h1>
         <h1 id="navsmol">Nav</h1>
     </header>
-    
+    <h1 id="slideshow-title">PETS UP FOR ADOPTION</h1>
     <div class="slideshow">
-        <h1 id="slideshow-title">PETS UP FOR ADOPTION</h1>
+        
+        <button id="prev">&uarr;</button>
         <div class="card-container">
-            <div class="cards card-2">
-                <img src="/photos/doggo1.jpg" alt="Barney" class="card-img">
-                <content>
-                    <h1 id="card-header">Barney, 2</h1>
-                    <p id="card-description">Barney is very cute and you must adopt him!</p>
-                </content>
-            </div>
             <div class="cards card-1">
                 <img src="/photos/mikeyfinal.png" alt="mikey" class="card-img">
                 <content>
                     <h1 id="card-header">Mikey, 3</h1>
                     <p id="card-description">Mikey is very cute and you must adopt him!</p>
+                </content>
+            </div>
+            <div class="cards card-2">
+                <img src="/photos/doggo1.jpg" alt="Barney" class="card-img">
+                <content>
+                    <h1 id="card-header">Barney, 2</h1>
+                    <p id="card-description">Barney is very cute and you must adopt him!</p>
                 </content>
             </div>
             <div class="cards card-3">
@@ -367,6 +413,9 @@
                 </content>
             </div>
         </div> 
+        <button id="next">&uarr;</button>
+    </div>
+    <div id="adopt-button">
         <a href="">
             <button id="adopt">Adopt Me!</button>
         </a>
@@ -415,6 +464,13 @@
         <h1>About Us</h1>
     </footer>
     <script>
+        const cards = document.querySelectorAll('.cards');
+        let currentIndex = 0;
+
+        document.getElementById('prev').addEventListener('click', function(){
+            cards[currentIndex].remove;
+        });
+
         let toTop = document.getElementById("top");
         toTop.addEventListener("click", function () {
             window.scrollTo({ top: 0, behavior: 'smooth' });
