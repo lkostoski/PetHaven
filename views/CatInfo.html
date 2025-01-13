@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="MyCSS.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body{
+            position: relative;
+            background-color: #FBEAEB;
+            font-family: "Times New Roman", Times, serif;
+            padding: 2%;
+        }
+
+        header{
+            background-color: #2F3C7E;
+            position:fixed;
+            display:flex;
+            top:0;
+            left:0;
+            right:0;
+            z-index: 3;
+            justify-content: space-between;
+        }
+
+        header > h1{
+            color: #FBEAEB;
+            padding: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .cat-welcome{
+            margin-top: 10%;
+            max-width: 700px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #throwlist{
+        margin: auto;
+        display:flex;
+        list-style: none;
+        justify-content: space-evenly;
+        overflow: hidden;
+        }
+        div>ul>li{
+            float:left;
+            opacity:0;
+            transform: translateX(100%);
+            /* using transform property [5] */
+            transition: transform 4s ease-in-out, opacity 1.5s ease-in-out
+            /* using transition [6] */
+        }
+        #sucpara{
+            
+            text-align: center;
+        }
+        div>ul>li>p{
+            padding:10px;
+            font-size:20px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .successphoto{
+            height: 300px; /* Larger height for better visibility */
+            width: 250px; /* Set width to match height */
+            object-fit: cover; /* Ensure images are cropped neatly */
+            border-radius: 50%; /* Fully rounded images */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a soft shadow */
+        }
+        .slideshow{
+            margin-top: 5%;
+        }
+
+        .faq {
+            margin: 30px auto;
+            margin-bottom: 10%;
+            width: 80%;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+        }
+
+        .faq-answer {
+            display: none;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .faq-question:hover {
+            background: #357ab8;
+        }
+
+        .question-section {
+            max-width: 600px;
+            margin-top: 2%;
+            margin-bottom: 5%;
+        }
+        .question-card {
+            margin-top: 15px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pet Heaven</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="">Home</a>
+                </li>
+                <li class="popup">
+                    <a href="">Adoption</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">How to adopt?</a>
+                        </li>
+                        <li>
+                            <a href="">Find Pets</a>
+                        </li>
+                        <li>
+                            <a href="">Adoption Centers</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="popup">
+                    <a href="">Pet Shop</a>
+                </li>
+                <li class="popup">
+                    <a href="">Pet Info</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">Dogs</a>
+                        </li>
+                        <li>
+                            <a href="">Cats</a>
+                        </li>
+                        <li>
+                            <a href="">Others</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="popup">
+                    <a href="">Technical</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">About Us</a>
+                        </li>
+                        <li>
+                            <a href="">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="">Contact Us</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <h1>Account</h1>
+    </header>
+
+
+    <section class="cat-welcome">
+        <img src="public\photos\dog.jpg" alt="Cat Hero Image" style="border-radius: 10px;">
+        <h1 id="heroText">Welcome to Cat World!</h1>
+        <p class="lead">Discover amazing facts, explore cat breeds, and learn all about our feline friends.</p>
+    </section>
+
+
+    <section class="slideshow">
+      <div  data-aos="fade-up">
+        <ul id="throwlist">
+            <li class="throwli">
+               <img class="successphoto"  src="public\photos\dog.jpg"> </a></li>
+            <li class="throwli"><h4 style="font-size: 22px;">From Stray to Family:</h4><p>
+                Abandoned and alone, a stray puppy named Jasper roamed the streets until a caring individual rescued her. Today, Jasper thrives in a loving home, reminding us that every pet deserves a chance at happiness.</p></li>
+            <li class="throwli">
+                <img class="successphoto"  src="public\photos\dog.jpg"></a></li>
+            <li class="throwli"><h4 style="font-size: 22px;">Max's Journey to Love:</h4><p>
+                Max, a senior dog, spent years overlooked until a kind soul decided to give him a chance. Despite his age, Max brought boundless energy and loyalty to his new home, proving that love knows no age.</p></li>
+            <li class="throwli">
+                <img class="successphoto" src="public\photos\dog.jpg"></a></li>
+            <li class="throwli"><h4 style="font-size: 22px;">Twins' Second Chance:</h4><p>
+                After months in a shelter, Luna and Lex found a forever home. Their new family saw past the shy exterior and discovered two playful, loving companions. Now, their days are filled with joy and endless tail wags.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+          <button class="faq-question">How often should I feed my dog?</button>
+          <div class="faq-answer">Dogs typically eat twice a day. Consult your vet for specifics.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What is the best exercise for my dog?</button>
+          <div class="faq-answer">Activities like walking, fetch, or swimming are great options.</div>
+        </div>
+    </section>
+
+    
+    <section class="container question-section">
+        <h2 class="text-center">Ask a Question</h2>
+        <form id="questionForm" class="mb-3">
+            <div class="mb-3">
+                <label for="questionInput" class="form-label">Your Question</label>
+                <textarea id="questionInput" class="form-control" rows="3" placeholder="Type your question here..." required></textarea>
+            </div>
+           <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div id="questionsList">
+            <!-- Questions will appear here -->
+        </div>
+    </section>
+
+    <footer>
+        <h1>Contact Us</h1>
+        <h1>About Us</h1>
+    </footer>
+
+
+<script>
+
+
+            // Hero Text Animation
+            const heroText = document.getElementById('heroText');
+            const messages = ["Welcome to Cat World!", "Discover the Magic of Cats!", "Your Hub for All Things Feline!"];
+            let index = 0;
+
+            setInterval(() => {
+                heroText.textContent = messages[index];
+                index = (index + 1) % messages.length; // Cycle through the messages
+            }, 3000); // Change message every 3 seconds
+
+
+            document.addEventListener("DOMContentLoaded",function(){
+                var throwListItem=document.querySelectorAll(".throwli");
+                throwListItem.forEach(function(li,index){
+                    li.style.transitionDelay= index+"s";});
+                    requestAnimationFrame(function(){
+                        throwListItem.forEach(function(li){
+                            li.style.opacity="1";
+                            li.style.transform="translateX(0)";
+                        });
+                    });
+            });
+             
+            //FAQ
+            const faqQuestions = document.querySelectorAll(".faq-question");
+
+            faqQuestions.forEach((question) => {
+            question.addEventListener("click", () => {
+                const answer = question.nextElementSibling;
+                if (answer.style.display === "block") {
+                    answer.style.display = "none";
+                } else {
+                answer.style.display = "block";
+                }
+            });
+            });
+
+
+            document.getElementById('questionForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get the question from the input field
+            const questionInput = document.getElementById('questionInput');
+            const questionText = questionInput.value.trim();
+
+            if (questionText !== "") {
+                // Create a new card for the question
+                const questionCard = document.createElement('div');
+                questionCard.className = 'card question-card';
+
+                // Add question content to the card
+                questionCard.innerHTML = `
+                    <div class="card-body">
+                        <p class="card-text">${questionText}</p>
+                    </div>
+                `;
+
+                // Append the card to the questions list
+                document.getElementById('questionsList').prepend(questionCard);
+
+                // Clear the input field
+                questionInput.value = "";
+            }
+            });
+
+            
+</script>
+</body>
+</html>
+

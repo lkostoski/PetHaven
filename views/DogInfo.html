@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="MyCSS.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body{
+            position: relative;
+            background-color: #FBEAEB;
+            font-family: "Times New Roman", Times, serif;
+            padding: 5%;
+        }
+
+        header{
+            background-color: #2F3C7E;
+            position:fixed;
+            display:flex;
+            top:0;
+            left:0;
+            right:0;
+            z-index: 3;
+            justify-content: space-between;
+        }
+
+        header > h1{
+            color: #FBEAEB;
+            padding: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .slideshow{
+            margin-top: 10%;
+        }
+
+        #myCarousel {
+            width: 50%; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .carousel-inner img {
+            width: 100%; 
+            height: 300px; 
+            object-fit: cover;
+            border-radius: 10px; 
+        }
+
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.5); 
+            padding: 10px;
+            border-radius: 5px; 
+        }
+
+        /* Tabs */
+        .tabs {
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .tab-button {
+            margin: 0 10px;
+            padding: 10px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* FAQ */
+        .faq {
+            margin: 30px auto;
+            margin-bottom: 10%;
+            width: 80%;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+        }
+
+        .faq-answer {
+            display: none;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .faq-question:hover {
+            background: #357ab8;
+        }
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1>Pet Heaven</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="">Home</a>
+                </li>
+                <li class="popup">
+                    <a href="">Adoption</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">How to adopt?</a>
+                        </li>
+                        <li>
+                            <a href="">Find Pets</a>
+                        </li>
+                        <li>
+                            <a href="">Adoption Centers</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="popup">
+                    <a href="">Pet Shop</a>
+                </li>
+                <li class="popup">
+                    <a href="">Pet Info</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">Dogs</a>
+                        </li>
+                        <li>
+                            <a href="">Cats</a>
+                        </li>
+                        <li>
+                            <a href="">Others</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="popup">
+                    <a href="">Technical</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">About Us</a>
+                        </li>
+                        <li>
+                            <a href="">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="">Contact Us</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <h1>Account</h1>
+        <h1 id="navsmol">Nav</h1>
+    </header>
+
+    <section class="slideshow">
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+      
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="public\photos\dog.jpg" class="d-block w-100" alt="Dog Diet">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Balanced Diet</h3>
+              <p>Feed your dog a nutritious and balanced diet.</p>
+            </div>
+          </div>
+      
+          <div class="carousel-item">
+            <img src="public\photos\dog.jpg" class="d-block w-100" alt="Dog Exercise">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Daily Exercise</h3>
+              <p>Keep your dog healthy with regular exercise.</p>
+            </div>
+          </div>
+      
+          <div class="carousel-item">
+            <img src="public\photos\dog.jpg" class="d-block w-100" alt="Dog Grooming">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Proper Grooming</h3>
+              <p>Ensure a clean and healthy coat with regular grooming.</p>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Left and right controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>  
+      
+    
+    
+    <section class="tabs">
+        <h2>Explore Dog Care Topics</h2>
+        <div class="tab-buttons">
+          <button class="tab-button active" data-tab="diet">Diet</button>
+          <button class="tab-button" data-tab="exercise">Exercise</button>
+          <button class="tab-button" data-tab="grooming">Grooming</button>
+        </div>
+        <div class="tab-content active" id="diet">
+            <p>
+                A balanced diet is essential for your dog's health and well-being. 
+                Dogs thrive on a mix of high-quality proteins, healthy fats, and 
+                essential vitamins and minerals. Their diet should include appropriate 
+                portions of commercial dog food or home-prepared meals tailored to 
+                their breed, size, age, and activity level. Fresh water should always 
+                be available, and treats should be given in moderation to avoid overfeeding. 
+                Consult your veterinarian to determine the best diet for your dog, including 
+                any specific dietary needs or restrictions they may have.
+            </p>
+        </div>
+        <div class="tab-content" id="exercise">Regular exercise keeps your dog healthy and happy.</div>
+        <div class="tab-content" id="grooming">Proper grooming ensures a clean and healthy coat.</div>
+      </section>
+    
+      <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+          <button class="faq-question">How often should I feed my dog?</button>
+          <div class="faq-answer">Dogs typically eat twice a day. Consult your vet for specifics.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What is the best exercise for my dog?</button>
+          <div class="faq-answer">Activities like walking, fetch, or swimming are great options.</div>
+        </div>
+      </section>
+    <footer>
+        <h1>Contact Us</h1>
+        <h1>About Us</h1>
+    </footer>
+
+<script>
+    // Tabs
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    tabButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        tabButtons.forEach((btn) => btn.classList.remove("active"));
+        tabContents.forEach((content) => content.classList.remove("active"));
+        button.classList.add("active");
+        document.getElementById(button.dataset.tab).classList.add("active");
+    });
+    });
+
+    // FAQ
+    const faqQuestions = document.querySelectorAll(".faq-question");
+
+    faqQuestions.forEach((question) => {
+    question.addEventListener("click", () => {
+        const answer = question.nextElementSibling;
+        if (answer.style.display === "block") {
+            answer.style.display = "none";
+        } else {
+        answer.style.display = "block";
+        }
+    });
+    });
+
+</script>
+</body>
+</html>

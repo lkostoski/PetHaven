@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="MyCSS.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body{
+            position: relative;
+            background-color: #FBEAEB;
+            font-family: "Times New Roman", Times, serif;
+            padding-bottom: 4%;
+        }
+
+        header{
+            background-color: #2F3C7E;
+            position:fixed;
+            display:flex;
+            top:0;
+            left:0;
+            right:0;
+            z-index: 3;
+            justify-content: space-between;
+        }
+
+        header > h1{
+            color: #FBEAEB;
+            padding: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .cat-section {
+            max-width: 600px;
+            margin: 7% auto;
+        }
+        .cat-fact-card {
+            margin-top: 20px;
+        }
+
+        .content-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; 
+        }
+
+        .photo-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: auto; 
+        }
+
+        .photo {
+            width: 250px; 
+            height: auto;
+            margin: 5%; 
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            margin: 20px 0;
+        }
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+        .options li {
+            margin: 10px 0;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pet Heaven</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="">Home</a>
+                </li>
+                <li class="popup">
+                    <a href="">Adoption</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">How to adopt?</a>
+                        </li>
+                        <li>
+                            <a href="">Find Pets</a>
+                        </li>
+                        <li>
+                            <a href="">Adoption Centers</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="popup">
+                    <a href="">Pet Shop</a>
+                </li>
+                <li class="popup">
+                    <a href="">Pet Info</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">Dogs</a>
+                        </li>
+                        <li>
+                            <a href="">Cats</a>
+                        </li>
+                        <li>
+                            <a href="">Others</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="popup">
+                    <a href="">Technical</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="">About Us</a>
+                        </li>
+                        <li>
+                            <a href="">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="">Contact Us</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <h1>Account</h1>
+    </header>
+
+    <section class="container cat-section">
+        <h2 class="text-center">Cat Fun Facts</h2>
+        <p class="text-center">Click the button below to learn an interesting fact about cats!</p>
+        <div class="text-center">
+            <button id="generateFactButton" class="btn btn-primary">Get a Cat Fact</button>
+        </div>
+        <div id="catFactCard" class="card cat-fact-card d-none">
+            <div class="card-body">
+                <p id="catFactText" class="card-text"></p>
+            </div>
+        </div>
+    </section>
+
+    <div class="content-wrapper">
+        <div class="photo-column">
+            <img src="public\photos\dog.jpg" alt="Photo 1" class="photo">
+            <img src="public\photos\dog.jpg" alt="Photo 2" class="photo">
+            <img src="public\photos\dog.jpg" alt="Photo 3" class="photo">
+            <img src="public\photos\dog.jpg" alt="Photo 3" class="photo">
+        </div>
+    <section class="quiz-container">
+        <h1>Test Your Pet Knowledge!</h1>
+        <div id="quiz"></div>
+        <button id="submit">Submit Quiz</button>
+        <div id="result" class="result"></div>
+    </section>
+    <div class="photo-column">
+        <img src="public\photos\dog.jpg" alt="Photo 1" class="photo">
+        <img src="public\photos\dog.jpg" alt="Photo 2" class="photo">
+        <img src="public\photos\dog.jpg" alt="Photo 3" class="photo">
+        <img src="public\photos\dog.jpg" alt="Photo 3" class="photo">
+    </div>
+    </div>
+
+    <footer>
+        <h1>Contact Us</h1>
+        <h1>About Us</h1>
+    </footer>
+
+      
+
+<script>
+            const catFacts = [
+                "Cats can rotate their ears 180 degrees.",
+                "A group of cats is called a clowder.",
+                "Cats sleep for 70% of their lives.",
+                "A cat's nose is as unique as a human fingerprint.",
+                "Cats have five toes on their front paws, but only four on their back paws.",
+                "The oldest known pet cat was found in a 9,500-year-old grave on the Mediterranean island of Cyprus."
+            ];
+
+            const generateFactButton = document.getElementById('generateFactButton');
+            const catFactCard = document.getElementById('catFactCard');
+            const catFactText = document.getElementById('catFactText');
+
+            generateFactButton.addEventListener('click', function() {
+                const randomFact = catFacts[Math.floor(Math.random() * catFacts.length)];
+
+                catFactText.textContent = randomFact;
+                catFactCard.classList.remove('d-none');
+            });
+
+            const quizData = [
+            {
+                question: "What is the average lifespan of a domestic dog?",
+                options: ["5-8 years", "10-13 years", "15-20 years", "20-25 years"],
+                answer: 1
+            },
+            {
+                question: "Which of these is a common health issue in cats?",
+                options: ["Arthritis", "Obesity", "Heart disease", "All of the above"],
+                answer: 3
+            },
+            {
+                question: "What is the primary diet of a rabbit?",
+                options: ["Grains", "Hay", "Meat", "Fruit"],
+                answer: 1
+            }
+        ];
+
+        const quizContainer = document.getElementById('quiz');
+        const submitButton = document.getElementById('submit');
+        const resultContainer = document.getElementById('result');
+
+        function loadQuiz() {
+            quizContainer.innerHTML = quizData.map((item, index) => `
+                <div class="question">
+                    <h3>${index + 1}. ${item.question}</h3>
+                    <ul class="options">
+                        ${item.options.map((option, i) => `
+                            <li>
+                                <label>
+                                    <input type="radio" name="question${index}" value="${i}"> ${option}
+                                </label>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `).join('');
+        }
+
+        function calculateResults() {
+            let score = 0;
+
+            quizData.forEach((item, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                if (selectedOption && parseInt(selectedOption.value) === item.answer) {
+                    score++;
+                }
+            });
+
+            resultContainer.innerHTML = `You scored ${score} out of ${quizData.length}!`;
+        }
+
+        submitButton.addEventListener('click', calculateResults);
+
+        loadQuiz();
+
+</script>
+</body>
+</html>
