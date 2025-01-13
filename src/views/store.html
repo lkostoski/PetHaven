@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paw Heaven - Shop</title>
+    <link rel="stylesheet" href="myCSS.css">
+    <style>
+        /* Additional styles for the shop page */
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .shop-container {
+            display: flex;
+            margin-top: 100px; /* Adjust for the fixed header */
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .filters-container {
+            flex-basis: 25%;
+            padding: 30px;
+            background-color: #f0f0f0;
+            border-right: 2px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .filters-container h3 {
+            color: #2F3C7E;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .product-section {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        .shop-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .shop-header h1 {
+            color: #2F3C7E;
+        }
+
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: flex-start;
+        }
+
+        .product-item {
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            width: 200px;
+            background-color: #FBEAEB;
+        }
+
+        .product-item img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .product-item h2 {
+            font-size: 16px;
+            color: #2F3C7E;
+        }
+
+        .product-item p {
+            font-size: 14px;
+        }
+
+        .sort-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get references to input fields and filters
+            const searchInput = document.getElementById('search');
+            const sortSelect = document.getElementById('sort');
+            const animalFilter = document.getElementById('animal-filter');
+            const categoryFilter = document.getElementById('category-filter');
+            const brandFilter = document.getElementById('brand-filter');
+            const productList = document.querySelector('.product-list');
+            const products = Array.from(productList.children);
+
+            // Function to filter products based on user input
+            function filterProducts() {
+                const query = searchInput.value.toLowerCase(); // Get search query
+                const selectedAnimal = animalFilter.value; // Selected animal filter
+                const selectedCategory = categoryFilter.value; // Selected category filter
+                const selectedBrand = brandFilter.value; // Selected brand filter
+
+                products.forEach(product => {
+                    // Get product details from data attributes
+                    const productName = product.querySelector('h2').textContent.toLowerCase();
+                    const productAnimal = product.dataset.animal;
+                    const productCategory = product.dataset.category;
+                    const productBrand = product.dataset.brand;
+
+                    // Check if product matches filters
+                    const matchesSearch = productName.includes(query);
+                    const matchesAnimal = selectedAnimal === 'all' || productAnimal === selectedAnimal;
+                    const matchesCategory = selectedCategory === 'all' || productCategory === selectedCategory;
+                    const matchesBrand = selectedBrand === 'all' || productBrand === selectedBrand;
+
+                    // Display product if it matches all criteria
+                    product.style.display = matchesSearch && matchesAnimal && matchesCategory && matchesBrand ? '' : 'none';
+                });
+            }
+
+            // Function to sort products based on selected criteria
+            function sortProducts() {
+                const sortValue = sortSelect.value; // Get selected sort option
+
+                // Sort products based on criteria
+                const sortedProducts = [...products].sort((a, b) => {
+                    if (sortValue === 'price-asc') {
+                        const priceA = parseFloat(a.querySelector('p').textContent.replace('$', ''));
+                        const priceB = parseFloat(b.querySelector('p').textContent.replace('$', ''));
+                        return priceA - priceB;
+                    } else if (sortValue === 'price-desc') {
+                        const priceA = parseFloat(a.querySelector('p').textContent.replace('$', ''));
+                        const priceB = parseFloat(b.querySelector('p').textContent.replace('$', ''));
+                        return priceB - priceA;
+                    } else if (sortValue === 'name') {
+                        const nameA = a.querySelector('h2').textContent.toLowerCase();
+                        const nameB = b.querySelector('h2').textContent.toLowerCase();
+                        return nameA.localeCompare(nameB);
+                    } else if (sortValue === 'recommended') {
+                        // Default sort or recommended order
+                        return 0; // Change this logic for actual recommendations
+                    }
+                });
+
+                // Reattach sorted products to the DOM
+                productList.innerHTML = '';
+                sortedProducts.forEach(product => productList.appendChild(product));
+            }
+
+            // Add event listeners for filtering and sorting
+            searchInput.addEventListener('input', filterProducts);
+            animalFilter.addEventListener('change', filterProducts);
+            categoryFilter.addEventListener('change', filterProducts);
+            brandFilter.addEventListener('change', filterProducts);
+            sortSelect.addEventListener('change', () => {
+                sortProducts();
+                filterProducts();
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <!-- Header section with navigation links -->
+        <h1 id="title">Paw Heaven</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li class="popup">
+                    <a href="#">Shop</a>
+                    <ul class="dropdown">
+                        <li><a href="#">Dog Food</a></li>
+                        <li><a href="#">Cat Food</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Our Story</a></li>
+            </ul>
+        </nav>
+        <h1>Account</h1>
+        <h1 id="navsmol">Nav</h1>
+    </header>
+
+    <div class="shop-container">
+        <aside class="filters-container">
+            <!-- Filters sidebar for searching and filtering products -->
+            <h3>Filters</h3>
+            <div class="filters">
+                <div>
+                    <label for="search">Search:</label>
+                    <input type="text" id="search" placeholder="Search products...">
+                </div>
+                <div>
+                    <label for="animal-filter">Animal:</label>
+                    <select id="animal-filter">
+                        <option value="all">All</option>
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="category-filter">Category:</label>
+                    <select id="category-filter">
+                        <option value="all">All</option>
+                        <option value="food">Food</option>
+                        <option value="toys">Toys</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="brand-filter">Brand:</label>
+                    <select id="brand-filter">
+                        <option value="all">All</option>
+                        <option value="pedigree">Pedigree</option>
+                        <option value="kibbles">Kibbles</option>
+                        <option value="hypro">Hypro</option>
+                    </select>
+                </div>
+            </div>
+        </aside>
+
+        <section class="product-section">
+            <!-- Main product section -->
+            <div class="shop-header">
+                <h1>Shop The Latest</h1>
+            </div>
+            <div class="sort-container">
+                <!-- Sorting dropdown for sorting products -->
+                <label for="sort">Sort By:</label>
+                <select id="sort">
+                    <option value="recommended">Recommended</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                    <option value="name">Name</option>
+                </select>
+            </div>
+
+            <div class="product-list">
+                <!-- List of products with data attributes for filtering -->
+                <div class="product-item" data-animal="dog" data-category="food" data-brand="pedigree">
+                    <img src="462543101_1096327681894383_72523.jpg" alt="Pedigree">
+                    <h2>Pedigree</h2>
+                    <p>$20.00</p>
+                </div>
+                <div class="product-item" data-animal="dog" data-category="food" data-brand="kibbles">
+                    <img src="462559181_1481031572571910_38792.jpg" alt="Kibbles">
+                    <h2>Kibbles</h2>
+                    <p>$30.00</p>
+                </div>
+                <div class="product-item" data-animal="dog" data-category="food" data-brand="hypro">
+                    <img src="temp_image.jpg" alt="Hypro">
+                    <h2>Hypro</h2>
+                    <p>$25.00</p>
+                </div>
+                <div class="product-item" data-animal="cat" data-category="food" data-brand="meowmix">
+                    <img src="temp_image.jpg" alt="Meow Mix">
+                    <h2>Meow Mix</h2>
+                    <p>$30.00</p>
+                </div>
+                <div class="product-item" data-animal="cat" data-category="food" data-brand="whiskas">
+                    <img src="temp_image.jpg" alt="Whiskas">
+                    <h2>Whiskas</h2>
+                    <p>$30.00</p>
+                </div>
+                <div class="product-item" data-animal="dog" data-category="accessories" data-brand="prochoice">
+                    <img src="temp_image.jpg" alt="Pro Choice">
+                    <h2>Pro Choice</h2>
+                    <p>$19.00</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <!-- Footer section with contact and about links -->
+        <h1>Contact Us</h1>
+        <h1>About Us</h1>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paw Heaven</title>
+    <!-- Link to external CSS file for global styling -->
+    <link rel="stylesheet" href="myCSS.css">
+    <style>
+        /* Reset and global styles */
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Container for the product details and similar items */
+        .container {
+            padding: 20px;
+            margin-top: 100px; /* Leaves space for the fixed header */
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Layout for the product details section */
+        .product-details {
+            display: flex;
+            gap: 20px; /* Space between the image and product info */
+        }
+
+        /* Product image styling */
+        .product-details img {
+            width: 300px; /* Set a fixed width for the product image */
+        }
+
+        /* Styling for product information section */
+        .product-info {
+            flex-grow: 1; /* Allows the info section to take up available space */
+        }
+
+        .product-info h2 {
+            color: #2F3C7E; /* Custom color for the product title */
+        }
+
+        /* Section for similar items */
+        .similar-items {
+            margin-top: 50px; /* Space above the similar items section */
+        }
+
+        .similar-items h3 {
+            color: #2F3C7E; /* Matches the product title color */
+        }
+
+        /* Individual similar item container styling */
+        .similar-items .item {
+            display: inline-block;
+            text-align: center;
+            margin: 10px; /* Adds space between similar items */
+        }
+
+        /* Styling for similar item images */
+        .similar-items img {
+            width: 150px; /* Fixed width for consistency */
+        }
+
+        /* General styling for shop pages */
+        .shop-page {
+            text-align: center;
+        }
+
+        .shop-page img {
+            width: 150px; /* Fixed width for shop images */
+        }
+
+        .shop-page .item {
+            display: inline-block;
+            margin: 20px; /* Adds space between items */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Website title and navigation -->
+        <h1 id="title">Paw Heaven</h1>
+        <nav>
+            <ul>
+                <!-- Navigation links for different sections of the site -->
+                <li><a href="#">Home</a></li>
+                <li class="popup">
+                    <!-- Dropdown menu for Shop links -->
+                    <a href="#">Shop</a>
+                    <ul class="dropdown">
+                        <li><a href="#">Dog Food</a></li>
+                        <li><a href="#">Cat Food</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Our Story</a></li>
+            </ul>
+        </nav>
+        <!-- Links for account and smaller navigation menu -->
+        <h1>Account</h1>
+        <h1 id="navsmol">Nav</h1>
+    </header>
+
+    <div class="container">
+        <!-- Product details section -->
+        <div class="product-details">
+            <!-- Product image -->
+            <img src="img/shopping.jpg" alt="Pedigree Small Dog Food">
+            <div class="product-info">
+                <!-- Product information -->
+                <h2>Pedigree Small Dog Food</h2>
+                <p>Price: $20.00</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 100% complete and balanced food for small adult dogs.</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Similar items section -->
+        <div class="similar-items">
+            <h3>Similar Items</h3>
+            <!-- Individual similar item -->
+            <div class="item">
+                <img src="img/Kibblesn-Bits-Mini-Bits-Small-Br.jpg" alt="Kibbles">
+                <p>Kibbles - $30.00</p>
+            </div>
+            <div class="item">
+                <img src="img/hypro-premium-dry-cat-food-adult.jpg" alt="Hypro">
+                <p>Hypro - $25.00</p>
+            </div>
+            <div class="item">
+                <img src="img/42463809.jpg" alt="Meow Mix">
+                <p>Meow Mix - $30.00</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <!-- Footer links -->
+        <h1>Contact Us</h1>
+        <h1>About Us</h1>
+    </footer>
+</body>
+</html>
