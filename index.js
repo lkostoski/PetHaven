@@ -32,6 +32,22 @@ app.get('/OtherInfo', (req,res)=>{
     res.render('OtherInfo.ejs');
 });
 
+app.get('/AdoptIndividual', (req,res)=>{
+    res.render('Adopt_Individual.ejs');
+});
+
+app.get('/Adopt', (req,res)=>{
+    res.render('Adopt.ejs');
+});
+
+app.get('/AdoptForm', (req,res)=>{
+    res.render('AdoptForm.ejs');
+});
+
+app.get('/Shelters', (req,res)=>{
+    res.render('Shelters.ejs');
+});
+
 app.listen(port, ()=>{
     console.log("Server started on port "+port);
 });
