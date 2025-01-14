@@ -48,7 +48,7 @@ app.get('/Adoption/Shelters', (req,res)=>{
     res.render('Shelters.ejs');
 });
 
-app.get('/PetShop/Store/Item', (req,res)=>{
+app.get('/PetShop/Item', (req,res)=>{
     res.render('Item.ejs');
 });
 
