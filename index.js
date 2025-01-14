@@ -12,47 +12,47 @@ app.get('/', (req,res)=>{
     res.render('Home.ejs');
 });
 
-app.get('/DogInfo', (req,res)=>{
+app.get('/PetInfo/DogInfo', (req,res)=>{
     res.render('DogInfo.ejs');
 });
 
-app.get('/CatInfo', (req,res)=>{
+app.get('/PetInfo/CatInfo', (req,res)=>{
     res.render('CatInfo.ejs');
 });
 
-app.get('/LogIn', (req,res)=>{
+app.get('/Account/LogIn', (req,res)=>{
     res.render('LogIn.ejs');
 });
 
-app.get('/SignUp', (req,res)=>{
+app.get('/Account/SignUp', (req,res)=>{
     res.render('SignUp.ejs');
 });
 
-app.get('/OtherInfo', (req,res)=>{
+app.get('/PetInfo/OtherInfo', (req,res)=>{
     res.render('OtherInfo.ejs');
 });
 
-app.get('/AdoptIndividual', (req,res)=>{
+app.get('/Adoption/AdoptIndividual', (req,res)=>{
     res.render('Adopt_Individual.ejs');
 });
 
-app.get('/Adopt', (req,res)=>{
+app.get('/Adoption/Adopt', (req,res)=>{
     res.render('Adopt.ejs');
 });
 
-app.get('/AdoptForm', (req,res)=>{
+app.get('/Adoption/AdoptForm', (req,res)=>{
     res.render('AdoptForm.ejs');
 });
 
-app.get('/Shelters', (req,res)=>{
+app.get('/Adoption/Shelters', (req,res)=>{
     res.render('Shelters.ejs');
 });
 
-app.get('/Item', (req,res)=>{
+app.get('/PetShop/Store/Item', (req,res)=>{
     res.render('Item.ejs');
 });
 
-app.get('/Store', (req,res)=>{
+app.get('/PetShop/Store', (req,res)=>{
     res.render('Store.ejs');
 });
 
