@@ -4,23 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paw Heaven - Shop</title>
-    <link rel="stylesheet" href="../myCSS.css">
+    <link rel="stylesheet" href="../myCSS.css" />
     <style>
-        /* Additional styles for the shop page */
-        /* body {
+        /* General Styles */
+        body {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        } */
-
-        .shop-container {
-            display: flex;
-            margin-top: 100px; /* Adjust for the fixed header */
             font-family: 'Times New Roman', Times, serif;
         }
 
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #2F3C7E;
+            color: white;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .shop-container {
+            display: flex;
+            margin-top: 100px;
+        }
+
         .filters-container {
-            flex-basis: 25%;
+            width: 300px; /* Fixed width for filters */
             padding: 30px;
             background-color: #f0f0f0;
             border-right: 2px solid #ccc;
@@ -29,31 +58,37 @@
             gap: 20px;
         }
 
-        .filters-container h3 {
-            color: #2F3C7E;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-
         .product-section {
             flex-grow: 1;
             padding: 20px;
         }
 
-        .shop-header {
-            text-align: center;
-            margin-bottom: 20px;
+        .search-bar-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
         }
 
-        .shop-header h1 {
-            color: #2F3C7E;
+        #search {
+            width: 60%;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        .shop-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
         }
 
         .product-list {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            justify-content: flex-start;
         }
 
         .product-item {
@@ -63,6 +98,12 @@
             border-radius: 8px;
             width: 200px;
             background-color: #FBEAEB;
+            transition: transform 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .product-item img {
@@ -71,95 +112,96 @@
             object-fit: cover;
         }
 
-        .product-item h2 {
-            font-size: 16px;
-            color: #2F3C7E;
-        }
-
-        .product-item p {
-            font-size: 14px;
-        }
-
-        .sort-container {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 20px;
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #2F3C7E;
+            color: white;
+            text-align: center;
         }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Get references to input fields and filters
             const searchInput = document.getElementById('search');
-            const sortSelect = document.getElementById('sort');
             const animalFilter = document.getElementById('animal-filter');
             const categoryFilter = document.getElementById('category-filter');
+            const sizeFilter = document.getElementById('size-filter');
+            const typeFilter = document.getElementById('type-filter');
             const brandFilter = document.getElementById('brand-filter');
+            const sortOptions = document.getElementById('sort-options');
             const productList = document.querySelector('.product-list');
             const products = Array.from(productList.children);
 
-            // Function to filter products based on user input
             function filterProducts() {
-                const query = searchInput.value.toLowerCase(); // Get search query
-                const selectedAnimal = animalFilter.value; // Selected animal filter
-                const selectedCategory = categoryFilter.value; // Selected category filter
-                const selectedBrand = brandFilter.value; // Selected brand filter
+                const query = searchInput.value.toLowerCase();
+                const selectedAnimal = animalFilter.value;
+                const selectedCategory = categoryFilter.value;
+                const selectedSize = sizeFilter.value;
+                const selectedType = typeFilter.value;
+                const selectedBrand = brandFilter.value;
 
                 products.forEach(product => {
-                    // Get product details from data attributes
                     const productName = product.querySelector('h2').textContent.toLowerCase();
                     const productAnimal = product.dataset.animal;
                     const productCategory = product.dataset.category;
+                    const productAnimalSize = product.dataset.size;
+                    const productType = product.dataset.type;
                     const productBrand = product.dataset.brand;
 
-                    // Check if product matches filters
                     const matchesSearch = productName.includes(query);
                     const matchesAnimal = selectedAnimal === 'all' || productAnimal === selectedAnimal;
                     const matchesCategory = selectedCategory === 'all' || productCategory === selectedCategory;
+                    const matchesSize = selectedSize === 'all' || productAnimalSize === selectedSize;
+                    const matchesType = selectedType === 'all' || productType === selectedType;
                     const matchesBrand = selectedBrand === 'all' || productBrand === selectedBrand;
 
-                    // Display product if it matches all criteria
-                    product.style.display = matchesSearch && matchesAnimal && matchesCategory && matchesBrand ? '' : 'none';
+                    const matchesFilters = matchesAnimal && matchesCategory && matchesSize && matchesType && matchesBrand;
+
+                    product.style.display = matchesSearch && matchesFilters ? '' : 'none';
                 });
             }
 
-            // Function to sort products based on selected criteria
             function sortProducts() {
-                const sortValue = sortSelect.value; // Get selected sort option
+                const criteria = sortOptions.value;
+                const sortedProducts = [...products];
 
-                // Sort products based on criteria
-                const sortedProducts = [...products].sort((a, b) => {
-                    if (sortValue === 'price-asc') {
-                        const priceA = parseFloat(a.querySelector('p').textContent.replace('$', ''));
-                        const priceB = parseFloat(b.querySelector('p').textContent.replace('$', ''));
-                        return priceA - priceB;
-                    } else if (sortValue === 'price-desc') {
-                        const priceA = parseFloat(a.querySelector('p').textContent.replace('$', ''));
-                        const priceB = parseFloat(b.querySelector('p').textContent.replace('$', ''));
-                        return priceB - priceA;
-                    } else if (sortValue === 'name') {
-                        const nameA = a.querySelector('h2').textContent.toLowerCase();
-                        const nameB = b.querySelector('h2').textContent.toLowerCase();
-                        return nameA.localeCompare(nameB);
-                    } else if (sortValue === 'recommended') {
-                        // Default sort or recommended order
-                        return 0; // Change this logic for actual recommendations
-                    }
-                });
+                switch (criteria) {
+                    case 'newest':
+                        break; // Keep as-is (default order)
+                    case 'price-asc':
+                        sortedProducts.sort((a, b) => {
+                            const priceA = parseFloat(a.querySelector('p').textContent.replace('$', ''));
+                            const priceB = parseFloat(b.querySelector('p').textContent.replace('$', ''));
+                            return priceA - priceB;
+                        });
+                        break;
+                    case 'price-desc':
+                        sortedProducts.sort((a, b) => {
+                            const priceA = parseFloat(a.querySelector('p').textContent.replace('$', ''));
+                            const priceB = parseFloat(b.querySelector('p').textContent.replace('$', ''));
+                            return priceB - priceA;
+                        });
+                        break;
+                    case 'alphabetical':
+                        sortedProducts.sort((a, b) => {
+                            const nameA = a.querySelector('h2').textContent.toLowerCase();
+                            const nameB = b.querySelector('h2').textContent.toLowerCase();
+                            return nameA.localeCompare(nameB);
+                        });
+                        break;
+                }
 
-                // Reattach sorted products to the DOM
                 productList.innerHTML = '';
                 sortedProducts.forEach(product => productList.appendChild(product));
             }
 
-            // Add event listeners for filtering and sorting
             searchInput.addEventListener('input', filterProducts);
             animalFilter.addEventListener('change', filterProducts);
             categoryFilter.addEventListener('change', filterProducts);
+            sizeFilter.addEventListener('change', filterProducts);
+            typeFilter.addEventListener('change', filterProducts);
             brandFilter.addEventListener('change', filterProducts);
-            sortSelect.addEventListener('change', () => {
-                sortProducts();
-                filterProducts();
-            });
+            sortOptions.addEventListener('change', sortProducts);
         });
     </script>
 </head>
@@ -221,89 +263,219 @@
 
     <div class="shop-container">
         <aside class="filters-container">
-            <!-- Filters sidebar for searching and filtering products -->
             <h3>Filters</h3>
-            <div class="filters">
-                <div>
-                    <label for="search">Search:</label>
-                    <input type="text" id="search" placeholder="Search products...">
-                </div>
-                <div>
-                    <label for="animal-filter">Animal:</label>
-                    <select id="animal-filter">
-                        <option value="all">All</option>
-                        <option value="dog">Dog</option>
-                        <option value="cat">Cat</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="category-filter">Category:</label>
-                    <select id="category-filter">
-                        <option value="all">All</option>
-                        <option value="food">Food</option>
-                        <option value="toys">Toys</option>
-                        <option value="accessories">Accessories</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="brand-filter">Brand:</label>
-                    <select id="brand-filter">
-                        <option value="all">All</option>
-                        <option value="pedigree">Pedigree</option>
-                        <option value="kibbles">Kibbles</option>
-                        <option value="hypro">Hypro</option>
-                    </select>
-                </div>
+            <div>
+                <label for="animal-filter">Animal:</label>
+                <select id="animal-filter">
+                    <option value="all">All</option>
+                    <option value="dog">Dog</option>
+                    <option value="cat">Cat</option>
+                    <option value="bird">Bird</option>
+                </select>
+            </div>
+            <div>
+                <label for="category-filter">Category:</label>
+                <select id="category-filter">
+                    <option value="all">All</option>
+                    <option value="food">Food</option>
+                    <option value="toys">Toys</option>
+                    <option value="accessories">Accessories</option>
+                </select>
+            </div>
+            <div>
+                <label for="size-filter">Animal Size:</label>
+                <select id="size-filter">
+                    <option value="all">All Sizes</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                </select>
+            </div>
+            <div>
+                <label for="type-filter">Food Type:</label>
+                <select id="type-filter">
+                    <option value="all">All Types</option>
+                    <option value="dry">Dry</option>
+                    <option value="wet">Wet</option>
+                    <option value="organic">Organic</option>
+                </select>
+            </div>
+            <div>
+                <label for="brand-filter">Brand:</label>
+                <select id="brand-filter">
+                    <option value="all">All Brands</option>
+                    <option value="pedigree">Pedigree</option>
+                    <option value="whiskas">Whiskas</option>
+                    <option value="kong">Kong</option>
+                    <option value="kaytee">Kaytee</option>
+                </select>
             </div>
         </aside>
 
         <section class="product-section">
-            <!-- Main product section -->
+            <div class="search-bar-container">
+                <input type="text" id="search" placeholder="Search products...">
+            </div>
             <div class="shop-header">
                 <h1>Shop The Latest</h1>
-            </div>
-            <div class="sort-container">
-                <!-- Sorting dropdown for sorting products -->
-                <label for="sort">Sort By:</label>
-                <select id="sort">
-                    <option value="recommended">Recommended</option>
+                <select id="sort-options" style="margin-left: auto; float: right; padding: 10px; font-size: 16px;">
+                    <option value="newest">Newest Items</option>
                     <option value="price-asc">Price: Low to High</option>
                     <option value="price-desc">Price: High to Low</option>
-                    <option value="name">Name</option>
+                    <option value="alphabetical">Alphabetical</option>
                 </select>
             </div>
-
             <div class="product-list">
-                <!-- List of products with data attributes for filtering -->
-                <div class="product-item" data-animal="dog" data-category="food" data-brand="pedigree">
-                    <img src="../photos/pedegree.jpg" alt="Pedigree">
-                    <h2>Pedigree</h2>
-                    <p>$20.00</p>
-                </div>
-                <div class="product-item" data-animal="dog" data-category="food" data-brand="kibbles">
-                    <img src="../photos/kibbles.jpg" alt="Kibbles">
-                    <h2>Kibbles</h2>
-                    <p>$30.00</p>
-                </div>
-                <div class="product-item" data-animal="dog" data-category="food" data-brand="hypro">
-                    <img src="../photos/hypro.jpg" alt="Hypro">
-                    <h2>Hypro</h2>
+                <!-- Products with animal sizes -->
+                <div class="product-item" data-animal="dog" data-category="food" data-brand="pedigree" data-size="large" data-type="dry">
+                    <img src="../photos/kibbles.jpg" alt="Pedigree">
+                    <h2>Pedigree Large Breed</h2>
                     <p>$25.00</p>
                 </div>
-                <div class="product-item" data-animal="cat" data-category="food" data-brand="meowmix">
-                    <img src="../photos/moewmix.jpg" alt="Meow Mix">
-                    <h2>Meow Mix</h2>
+                <div class="product-item" data-animal="dog" data-category="toys" data-brand="kong" data-size="medium">
+                    <img src="../photos/moewmix.jpg" alt="Kong Toy">
+                    <h2>Kong Toy</h2>
+                    <p>$15.00</p>
+                </div>
+                <div class="product-item" data-animal="cat" data-category="food" data-brand="whiskas" data-size="small" data-type="wet">
+                    <img src="../photos/pedegree.jpg" alt="Whiskas">
+                    <h2>Whiskas Wet Food</h2>
+                    <p>$10.00</p>
+                </div>
+                <div class="product-item" data-animal="bird" data-category="accessories" data-brand="kaytee" data-size="small">
+                    <img src="../photos/hypro.jpg" alt="Bird Cage">
+                    <h2>Bird Cage</h2>
+                    <p>$50.00</p>
+                </div>
+                <div class="product-item" data-animal="dog" data-category="food" data-brand="bluebuffalo" data-size="medium" data-type="organic">
+                    <img src="../photos/bluebuffalo.jpg" alt="Blue Buffalo Dog Food">
+                    <h2>Blue Buffalo Dog Food</h2>
                     <p>$30.00</p>
                 </div>
-                <div class="product-item" data-animal="cat" data-category="food" data-brand="whiskas">
-                    <img src="../photos/temp_image.jpg" alt="Whiskas">
-                    <h2>Whiskas</h2>
+                <div class="product-item" data-animal="cat" data-category="toys" data-brand="petsafe" data-size="small">
+                    <img src="../photos/cattoy.jpg" alt="PetSafe Cat Toy">
+                    <h2>PetSafe Cat Toy</h2>
+                    <p>$12.00</p>
+                </div>
+                <div class="product-item" data-animal="bird" data-category="food" data-brand="kaytee" data-size="small" data-type="dry">
+                    <img src="../photos/birdseed.jpg" alt="Kaytee Bird Seed">
+                    <h2>Kaytee Bird Seed</h2>
+                    <p>$8.00</p>
+                </div>
+                <div class="product-item" data-animal="dog" data-category="accessories" data-brand="ruffwear" data-size="large">
+                    <img src="../photos/dogharness.jpg" alt="Dog Harness">
+                    <h2>Dog Harness</h2>
+                    <p>$40.00</p>
+                </div>
+                <div class="product-item" data-animal="cat" data-category="accessories" data-brand="frisco" data-size="medium">
+                    <img src="../photos/catbed.jpg" alt="Cat Bed">
+                    <h2>Cat Bed</h2>
+                    <p>$25.00</p>
+                </div>
+                <div class="product-item" data-animal="dog" data-category="toys" data-brand="kong" data-size="large">
+                    <img src="../photos/dogtoy.jpg" alt="Kong Large Toy">
+                    <h2>Kong Large Toy</h2>
+                    <p>$18.00</p>
+                </div>
+                <div class="product-item" data-animal="bird" data-category="accessories" data-brand="prevue" data-size="medium">
+                    <img src="../photos/birdperch.jpg" alt="Bird Perch">
+                    <h2>Bird Perch</h2>
+                    <p>$15.00</p>
+                </div>
+                <div class="product-item" data-animal="dog" data-category="food" data-brand="hillspet" data-size="large" data-type="wet">
+                    <img src="../photos/hillspet.jpg" alt="Hill's Pet Food">
+                    <h2>Hill's Pet Wet Food</h2>
+                    <p>$28.00</p>
+                </div>
+                <div class="product-item" data-animal="cat" data-category="food" data-brand="iams" data-size="small" data-type="dry">
+                    <img src="../photos/iams.jpg" alt="Iams Cat Food">
+                    <h2>Iams Cat Food</h2>
+                    <p>$20.00</p>
+                </div>
+                <div class="product-item" data-animal="dog" data-category="accessories" data-brand="outwardhound" data-size="medium">
+                    <img src="../photos/doglifejacket.jpg" alt="Dog Life Jacket">
+                    <h2>Dog Life Jacket</h2>
+                    <p>$35.00</p>
+                </div>
+                <div class="product-item" data-animal="cat" data-category="food" data-brand="whiskas" data-size="small" data-type="wet">
+                    <img src="../photos/pedegree.jpg" alt="Whiskas">
+                    <h2>Whiskas Wet Food</h2>
+                    <p>$10.00</p>
+                </div>
+                <div class="product-item" data-animal="bird" data-category="accessories" data-brand="kaytee" data-size="small">
+                    <img src="../photos/hypro.jpg" alt="Bird Cage">
+                    <h2>Bird Cage</h2>
+                    <p>$50.00</p>
+                </div>
+                <div class="product-item" data-animal="dog" data-category="food" data-brand="bluebuffalo" data-size="medium" data-type="organic">
+                    <img src="../photos/bluebuffalo.jpg" alt="Blue Buffalo Dog Food">
+                    <h2>Blue Buffalo Dog Food</h2>
                     <p>$30.00</p>
                 </div>
-                <div class="product-item" data-animal="dog" data-category="accessories" data-brand="prochoice">
-                    <img src="../photos/temp_image.jpg" alt="Pro Choice">
-                    <h2>Pro Choice</h2>
-                    <p>$19.00</p>
+                <div class="product-item" data-animal="cat" data-category="toys" data-brand="petsafe" data-size="small">
+                    <img src="../photos/cattoy.jpg" alt="PetSafe Cat Toy">
+                    <h2>PetSafe Cat Toy</h2>
+                    <p>$12.00</p>
+                </div>
+                <div class="product-item" data-animal="bird" data-category="food" data-brand="kaytee" data-size="small" data-type="dry">
+                    <img src="../photos/birdseed.jpg" alt="Kaytee Bird Seed">
+                    <h2>Kaytee Bird Seed</h2>
+                    <p>$8.00</p>
+                </div>
+                <div class="product-item" data-animal="dog" data-category="accessories" data-brand="ruffwear" data-size="large">
+                    <img src="../photos/dogharness.jpg" alt="Dog Harness">
+                    <h2>Dog Harness</h2>
+                    <p>$40.00</p>
+                </div>
+                <div class="product-item" data-animal="cat" data-category="accessories" data-brand="frisco" data-size="medium">
+                    <img src="../photos/catbed.jpg" alt="Cat Bed">
+                    <h2>Cat Bed</h2>
+                    <p>$25.00</p>
+                </div>
+                <div class="product-item" data-animal="dog" data-category="toys" data-brand="kong" data-size="large">
+                    <img src="../photos/dogtoy.jpg" alt="Kong Large Toy">
+                    <h2>Kong Large Toy</h2>
+                    <p>$18.00</p>
+                </div>
+                <div class="product-item" data-animal="cat" data-category="food" data-brand="whiskas" data-size="small" data-type="wet">
+                    <img src="../photos/pedegree.jpg" alt="Whiskas">
+                    <h2>Whiskas Wet Food</h2>
+                    <p>$10.00</p>
+                </div>
+                <div class="product-item" data-animal="bird" data-category="accessories" data-brand="kaytee" data-size="small">
+                    <img src="../photos/hypro.jpg" alt="Bird Cage">
+                    <h2>Bird Cage</h2>
+                    <p>$50.00</p>
+                </div>
+                <div class="product-item" data-animal="dog" data-category="food" data-brand="bluebuffalo" data-size="medium" data-type="organic">
+                    <img src="../photos/bluebuffalo.jpg" alt="Blue Buffalo Dog Food">
+                    <h2>Blue Buffalo Dog Food</h2>
+                    <p>$30.00</p>
+                </div>
+                <div class="product-item" data-animal="cat" data-category="toys" data-brand="petsafe" data-size="small">
+                    <img src="../photos/cattoy.jpg" alt="PetSafe Cat Toy">
+                    <h2>PetSafe Cat Toy</h2>
+                    <p>$12.00</p>
+                </div>
+                <div class="product-item" data-animal="bird" data-category="food" data-brand="kaytee" data-size="small" data-type="dry">
+                    <img src="../photos/birdseed.jpg" alt="Kaytee Bird Seed">
+                    <h2>Kaytee Bird Seed</h2>
+                    <p>$8.00</p>
+                </div>
+                <div class="product-item" data-animal="dog" data-category="accessories" data-brand="ruffwear" data-size="large">
+                    <img src="../photos/dogharness.jpg" alt="Dog Harness">
+                    <h2>Dog Harness</h2>
+                    <p>$40.00</p>
+                </div>
+                <div class="product-item" data-animal="cat" data-category="accessories" data-brand="frisco" data-size="medium">
+                    <img src="../photos/catbed.jpg" alt="Cat Bed">
+                    <h2>Cat Bed</h2>
+                    <p>$25.00</p>
+                </div>
+                <div class="product-item" data-animal="dog" data-category="toys" data-brand="kong" data-size="large">
+                    <img src="../photos/dogtoy.jpg" alt="Kong Large Toy">
+                    <h2>Kong Large Toy</h2>
+                    <p>$18.00</p>
                 </div>
             </div>
         </section>
