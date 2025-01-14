@@ -70,13 +70,14 @@ nav>ul>li>a{
 }
 
 nav>ul>li>ul>li{
-    padding-top: 10px;
-    padding-bottom: 10px;
     text-align: center;
     cursor:pointer;
 }
 
 nav>ul>li>ul>li>a{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: block;
     color: #FBEAEB;
     text-decoration: none;
 }
