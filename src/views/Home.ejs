@@ -8,7 +8,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="myCSS.css"/>
     <style>
-
         #slideshow-title{
             position:relative;
             color: #2F3C7E;
@@ -46,7 +45,6 @@
             font-size: 200%;
             background: #2F3C7E;
             color:#FBEAEB;
-            font-family: "Times New Roman", Times, serif;
             font-weight: bold;
             width: 64px;
             height: 64px;
@@ -94,7 +92,6 @@
             font-size: 200%;
             background: #2F3C7E;
             color:#FBEAEB;
-            font-family: "Times New Roman", Times, serif;
             font-weight: bold;
             width: 64px;
             height: 64px;
@@ -305,27 +302,6 @@
                 width:100%;
             }
         }
-
-        #top{
-            position:fixed;
-            font-size: 200%;
-            bottom:11%;
-            right:1%;
-            background: #2F3C7E;
-            color:#FBEAEB;
-            font-family: "Times New Roman", Times, serif;
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            border: none;
-        }
-
-        #top:hover{
-            cursor: pointer;
-            background-color: #FBEAEB;
-            color: #2F3C7E;
-            border: solid #2F3C7E;
-        }
     </style>
 </head>
 <body>
@@ -391,7 +367,7 @@
             <div class="cards card-1">
                 <img src="/photos/mikeyfinal.png" alt="mikey" class="card-img">
                 <content>
-                    <h1 id="card-header">Mikey, 3</h1>
+                    <h1 id="card-header"></h1>
                     <p id="card-description">Mikey is very cute and you must adopt him!</p>
                 </content>
             </div>
@@ -455,8 +431,9 @@
         </div>
         <button id="learn">CHECK OUT OUR PET SHOP!</button>
     </section>
-    <button id="top">&uarr;</button>
+    
     <footer>
+        <button id="top">&uarr;</button>
         <h1>Contact Us</h1>
         <h1>About Us</h1>
     </footer>
@@ -468,11 +445,23 @@
             cards[currentIndex].remove;
         });
 
-        let toTop = document.getElementById("top");
+        const toTop = document.getElementById("top");
         toTop.addEventListener("click", function () {
             window.scrollTo({ top: 0, behavior: 'smooth' });
             console.log('clicked');
         });
+
+        document.addEventListener('scroll', function() {
+        const toTop = document.getElementById('top');
+        const footer = document.querySelector('footer');
+        const footerSpace = footer.getBoundingClientRect();
+
+        if (footerSpace.top < window.innerHeight) {
+            toTop.style.bottom = `11%`;
+        } else {
+            toTop.style.bottom = '5%';
+        }
+    });
     </script>
 </body>
 </html>
